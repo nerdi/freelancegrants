@@ -1,0 +1,11 @@
+@import "bootstrap";
+
+$font-family-base: courier;
+
+body{
+  font-family: $font-family-base;
+  font-stretch: condensed;
+}
+.bootstrap-welcome {
+  padding-top: 5em;
+}
