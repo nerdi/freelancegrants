@@ -30,7 +30,12 @@ end
 #activeadmin requirements
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
+#allows for markdown in activeadmin
 gem 'redcarpet'
+#allows for file uploads
+gem "rmagick"
+gem "carrierwave"
+gem 'carrierwave-dropbox'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
