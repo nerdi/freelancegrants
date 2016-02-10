@@ -13,3 +13,6 @@
 /tmp
 /config/local_env.yml
 /config/environment_variables.yml
+
+# Ignore application configuration
+/config/application.yml
