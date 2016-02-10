@@ -34,11 +34,15 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'redcarpet'
 #allows for file uploads
 gem "rmagick"
+gem "mini_magick"
+gem 'fog'
 gem "carrierwave"
 gem 'carrierwave-dropbox'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#wysywig for activeadmin
+gem 'redactor-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
