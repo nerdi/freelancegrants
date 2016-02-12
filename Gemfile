@@ -36,6 +36,12 @@ gem 'redcarpet'
 gem "rmagick"
 gem "carrierwave"
 gem 'carrierwave-dropbox'
+
+# Use refile for image uploads to aws
+gem "refile", require: "refile/rails"
+gem "refile-mini_magick"
+gem "refile-s3"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

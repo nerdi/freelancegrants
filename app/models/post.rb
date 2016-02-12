@@ -1,3 +1,4 @@
 class Post < ActiveRecord::Base
-  mount_uploader :image, ImageUploader
+  #add attachement declaration to moidels for refile image uploading
+  attachment :profile_image
 end
