@@ -1,5 +1,4 @@
 <%= @post.title %>
 <%= markdown(@post.body) %>
-<%= image_tag @post.image %>
-<%= image_tag attachment_url(@post, :profile_image, :fill, 100, 100, format: "jpg") %>
 <%= image_tag attachment_url(@post, :profile_image, :fill, 250, 250) %>
+<%= image_tag attachment_url(@post, :image, :fill, 250, 250) %>
