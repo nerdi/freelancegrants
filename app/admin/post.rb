@@ -5,8 +5,8 @@ ActiveAdmin.register Post do
 
   form do |f|
     inputs 'Details' do
-      input :title, :input_html => {:class => "redactor", id: "redactor_here"}
-      input :body, :input_html => {:class => "redactor", id: "redactor_here"}
+      input :title
+      input :body, :input_html => {:class => "redactor"}
       input :profile_image, :required => false, :as => :file, destroy: false, :direct => true
       input :image, :required => false, :as => :file, destroy: false, :direct => true
       actions

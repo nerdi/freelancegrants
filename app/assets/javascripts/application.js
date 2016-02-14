@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require refile
+//= require redactor-rails
 //= require_tree .
