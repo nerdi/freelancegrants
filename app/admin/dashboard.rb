@@ -16,7 +16,29 @@ ActiveAdmin.register_page "Dashboard" do
         column do
           panel "Recent Posts" do
             ul do
-              
+            post = Post.find 1
+            v = post.versions.last
+              li do
+                post.versions
+              end
+              li do
+                v.event
+              end
+              li do
+                v.created_at
+              end
+              li do
+                v.whodunnit
+              end
+              li do
+                v.created_at
+              end
+              li do
+                v.previous.object
+              end
+              li do
+                v.object
+              end
             end
           end
         end
