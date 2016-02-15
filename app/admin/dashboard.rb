@@ -8,6 +8,14 @@ ActiveAdmin.register_page "Dashboard" do
         span I18n.t("active_admin.dashboard_welcome.welcome")
         small I18n.t("active_admin.dashboard_welcome.call_to_action")
       end
+    section "Recently updated content" do
+      table_for PaperTrail::Version.order('id desc').limit(20) do # Use PaperTrail::Version if this throws an error
+        column ("Version Number") { |v| link_to v.item, v.item.admin_permalink }
+        column ("Type") { |v| v.item_type.underscore.humanize }
+        column ("Modified at") { |v| v.created_at.to_s :long }
+        #column ("Admin") { |v| link_to AdminUser.find(v.whodunnit).email, [:admin, AdminUser.find(v.whodunnit)] }
+      end
+    end
     end
 
     #Here is an example of a simple dashboard with columns and panels.
@@ -16,29 +24,6 @@ ActiveAdmin.register_page "Dashboard" do
         column do
           panel "Recent Posts" do
             ul do
-            post = Post.find 1
-            v = post.versions.last
-              li do
-                post.versions
-              end
-              li do
-                v.event
-              end
-              li do
-                v.created_at
-              end
-              li do
-                v.whodunnit
-              end
-              li do
-                v.created_at
-              end
-              li do
-                v.previous.object
-              end
-              li do
-                v.object
-              end
             end
           end
         end
