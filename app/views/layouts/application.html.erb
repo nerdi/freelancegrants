@@ -23,10 +23,11 @@
         <a class="nav-link" href="#">About</a>
       </li>
     </ul>
-    <form class="form-inline pull-xs-right">
-      <input class="form-control" type="text" placeholder="Search">
-      <button class="btn btn-success-outline" type="submit">Search</button>
-    </form>
+
+    <%= form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f| %>
+        <%= text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control' %>
+        <%= submit_tag "Go", name: nil, :class => 'btn btn-success-outline' %>
+    <% end %>
   </nav>
 <div style="margin-top: 60px;">
 <div class="container">

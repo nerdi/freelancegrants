@@ -1,0 +1,15 @@
+<h1>Search Results</h1>
+
+<%= form_for search_path, method: :get, :html => { :class =>'form-inline' } do |f| %>
+  <%= text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control' %>
+  <%= submit_tag "Go", name: nil, :class => 'btn btn-success-outline' %>
+<% end %>
+  <% if @post != nil %>
+    <ul>
+      <% @post.each do |post| %>
+        <li><%= link_to post._source.title, post_path(post.id) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+      <h3 class="topDown">There were no results... Try again.</h3>
+  <% end %>
