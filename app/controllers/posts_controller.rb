@@ -6,10 +6,15 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @post }
+    if params[:q].present?
+      #@posts = Post.search(params[:q], load:true).result
+      @searchpost = Post.__elasticsearch__.search(params[:q])
+    else
+      @post = Post.find(params[:id])
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml  { render :xml => @post }
+      end
     end
   end
 

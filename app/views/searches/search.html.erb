@@ -1,15 +1,17 @@
-<h1>Search Results</h1>
-
-<%= form_for search_path, method: :get, :html => { :class =>'form-inline' } do |f| %>
-  <%= text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control' %>
-  <%= submit_tag "Go", name: nil, :class => 'btn btn-success-outline' %>
-<% end %>
-  <% if @post != nil %>
+<h1>Search</h1>
+<% if !params[:q].present? %>
+  <h3 class="topDown">What would you like to search for?</h3>
+  <%= render "shared/search_form" %>
+<% else %>
+  <% if !@post.empty? %>
+  <%= render "shared/search_form" %>
     <ul>
       <% @post.each do |post| %>
         <li><%= link_to post._source.title, post_path(post.id) %></li>
       <% end %>
     </ul>
   <% else %>
-      <h3 class="topDown">There were no results... Try again.</h3>
+    <h3 class="topDown">There were no results... Try again.</h3>
+    <%= render "shared/search_form" %>
   <% end %>
+<% end %>
