@@ -8,14 +8,12 @@
     </ul>
   <% else %>
     <h3 class="topDownWithNav">Your search returned no results... Try Again!</h3>
-    <%= form_for search_path, method: :get, :html => { :class =>'form-inline' } do |f| %>
-      <%= text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control' %>
-      <%= submit_tag "Go", name: nil, :class => 'btn btn-success-outline' %>
-    <% end %>
+    <%= render "shared/search_form" %>
   <% end %>
 <% else %>
-  <%= @post.title %>
+  <h3 class="topDownWithNav"><%= @post.title %></h3>
   <%= markdown(@post.body) %>
   <%= image_tag attachment_url(@post, :profile_image, :fill, 250, 250) %>
   <%= image_tag attachment_url(@post, :image, :fill, 250, 250) %>
+  <%= @post.created_at.strftime("%d-%m-%Y") %>
 <% end %>

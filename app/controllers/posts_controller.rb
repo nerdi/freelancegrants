@@ -3,6 +3,9 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.all
+    if params[:q].present?
+      @searchpost = Post.__elasticsearch__.search(params[:q])
+    end
   end
 
   def show

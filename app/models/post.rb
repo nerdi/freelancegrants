@@ -6,10 +6,6 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :body
   attachment :profile_image
   attachment :image
-  #Post.import force: true
-  #mapping do
-  # indexes :title ,  type: 'string'
-  #end
 
   def as_json(defaults = nil)
     {

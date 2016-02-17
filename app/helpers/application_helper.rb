@@ -19,4 +19,10 @@ module ApplicationHelper
 
     markdown.render(text).html_safe
   end
+
+  #active link for bootstrap nav
+  def active_class(link_path)
+    current_page?(link_path) ? 'active' : ""
+  end
+
 end
