@@ -48,6 +48,8 @@ gem 'redactor-rails'
 # elasticsearch
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+# add serachkick for additional search functionality with ease
+gem 'searchkick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
