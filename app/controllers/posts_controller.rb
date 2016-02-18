@@ -25,7 +25,8 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     respond_to do |format|
       if @post.save
-        Post.import :force => true
+        Post.__elasticsearch__.create_index! force: true
+        Post.import force: true
         format.html  { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.json  { render :json => @post, :status => :created, :location => @post }
       else
@@ -52,7 +53,8 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update_attributes(params[:post])
         flash[:notice] = 'Post was successfully updated.'
-        Post.import :force => true
+        Post.__elasticsearch__.create_index! force: true
+        Post.import force: true
         format.html { redirect_to(@post) }
         format.xml  { head :ok }
       else

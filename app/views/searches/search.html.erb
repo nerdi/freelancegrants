@@ -7,7 +7,8 @@
   <%= render "shared/search_form" %>
     <ul>
       <% @post.each do |post| %>
-        <li><%= link_to post._source.title, post_path(post.id) %></li>
+        <li><%= link_to post.title, post_path(post.id) %></li>
+        <li><%= post.searchkick_options %></li>
       <% end %>
     </ul>
   <% else %>

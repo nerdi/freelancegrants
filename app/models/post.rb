@@ -1,6 +1,6 @@
 require 'elasticsearch/model'
 class Post < ActiveRecord::Base
-  searchkick
+  searchkick suggest: [:title]
   #add attachement declaration to moidels for refile image uploading
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
