@@ -5,12 +5,7 @@
 <% else %>
   <% if !@post.empty? %>
   <%= render "shared/search_form" %>
-    <ul>
-      <% @post.each do |post| %>
-        <li><%= link_to post.title, post_path(post.id) %></li>
-        <li><%= post.searchkick_options %></li>
-      <% end %>
-    </ul>
+    <%= render "shared/search_results" %>
   <% else %>
     <h3 class="topDown">There were no results... Try again.</h3>
     <%= render "shared/search_form" %>

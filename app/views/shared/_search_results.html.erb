@@ -1,0 +1,7 @@
+<h2 class="topDown">Search Results... </h2>
+<ul>
+  <% @post.each do |post| %>
+    <li><%= link_to post.title, post_path(post.id) %></li>
+    <%= post.searchkick_options %>
+  <% end %>
+</ul>

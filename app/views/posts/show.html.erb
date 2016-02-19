@@ -1,11 +1,6 @@
 <% if params[:q].present? %>
-  <% if !@searchpost.empty? %>
-    <h2>Search Results... </h2>
-    <ul>
-      <% @searchpost.each do |post| %>
-        <li><%= link_to post._source.title, post_path(post.id) %></li>
-      <% end %>
-    </ul>
+  <% if !@post.empty? %>
+    <%= render "shared/search_results" %>
   <% else %>
     <h3 class="topDownWithNav">Your search returned no results... Try Again!</h3>
     <%= render "shared/search_form" %>

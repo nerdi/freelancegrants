@@ -4,5 +4,4 @@ class WelcomeController < ApplicationController
       redirect_to :controller=>'searches', :action => 'search', :params => params
     end
   end
-
 end

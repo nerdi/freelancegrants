@@ -1,17 +1,17 @@
+
 class PostsController < ApplicationController
   before_filter :find_post, :only => [:show, :edit, :update, :destroy]
 
   def index
     @post = Post.all
     if params[:q].present?
-      @searchpost = Post.__elasticsearch__.search(params[:q])
+      @post = Post.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     end
   end
 
   def show
     if params[:q].present?
-      #@posts = Post.search(params[:q], load:true).result
-      @searchpost = Post.__elasticsearch__.search(params[:q])
+      @post = Post.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     else
       @post = Post.find(params[:id])
       respond_to do |format|
@@ -25,8 +25,6 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     respond_to do |format|
       if @post.save
-        Post.__elasticsearch__.create_index! force: true
-        Post.import force: true
         format.html  { redirect_to(@post, :notice => 'Post was successfully created.') }
         format.json  { render :json => @post, :status => :created, :location => @post }
       else
@@ -53,8 +51,6 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update_attributes(params[:post])
         flash[:notice] = 'Post was successfully updated.'
-        Post.__elasticsearch__.create_index! force: true
-        Post.import force: true
         format.html { redirect_to(@post) }
         format.xml  { head :ok }
       else
