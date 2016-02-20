@@ -1,5 +1,5 @@
 <% if params[:q].present? %>
-  <% if !@post.empty? %>
+  <% if !@postsearch.empty? %>
     <%= render "shared/search_results" %>
   <% else %>
     <h3 class="topDownWithNav">Your search returned no results... Try Again!</h3>
