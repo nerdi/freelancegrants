@@ -3,7 +3,7 @@
   <h3 class="topDown">What would you like to search for?</h3>
   <%= render "shared/search_form" %>
 <% else %>
-  <% if !@post.empty? %>
+  <% if !@postsearch.empty? %>
   <%= render "shared/search_form" %>
     <%= render "shared/search_results" %>
   <% else %>
