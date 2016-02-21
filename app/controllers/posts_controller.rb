@@ -5,13 +5,13 @@ class PostsController < ApplicationController
   def index
     @post = Post.all
     if params[:q].present?
-      @post = Post.search params[:q], fields: [:title, :body], operator: "or", suggest: true
+      @postsearch = Post.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     end
   end
 
   def show
     if params[:q].present?
-      @post = Post.search params[:q], fields: [:title, :body], operator: "or", suggest: true
+      @postsearch = Post.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     else
       @post = Post.find(params[:id])
       respond_to do |format|
