@@ -7,11 +7,20 @@ body{
   font-stretch: condensed;
 }
 .bootstrap-welcome {
-  padding-top: 5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
 }
 .topDown{
   margin-top: 10px;
 }
 .topDownWithNav{
   margin-top: 80px;
+}
+.footer-column{
+  p, h1, h2, h3, h4, h5, img{
+    width:60%;
+    margin-left: 20%;
+    text-align: center;
+  }
 }

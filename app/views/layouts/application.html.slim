@@ -22,5 +22,11 @@ html
         = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control'
         = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
     div[style="margin-top: 60px;"]
-      .container
-        = yield
+      = render "shared/header"
+      - if current_page?(root_url)
+        .container-fluid
+          = yield
+      - else
+        .container
+          = yield
+      = render "shared/footer"
