@@ -1,0 +1,11 @@
+h1
+  | Posts
+- if params[:q].present?
+  - if !@postsearch.empty?
+    = render "shared/search_results"
+  - else
+    h3.topDown
+      | Your search returned no results... Try Again!
+    = render "shared/search_form"
+- else
+  = render "posts"

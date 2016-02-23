@@ -1,8 +1,0 @@
-<ul>
-  <% @post.each do |post| %>
-    <h3><%= link_to markdown(post.title), post_path(post.id) %></h3></li>
-    <p><%= markdown(post.body) %></p>
-    <p><%= post.created_at.strftime("%d-%m-%Y") %></p>
-    <hr>
-  <% end %>
-</ul>

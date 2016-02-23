@@ -1,0 +1,14 @@
+h1
+  | Search
+- if !params[:q].present?
+  h3.topDown
+    | What would you like to search for?
+  = render "shared/search_form"
+- else
+  - if !@postsearch.empty?
+    = render "shared/search_form"
+    = render "shared/search_results"
+  - else
+    h3.topDown
+      | There were no results... Try again.
+    = render "shared/search_form"

@@ -1,0 +1,9 @@
+ul
+  - @post.each do |post|
+    h3
+      = link_to markdown(post.title), post_path(post.id)
+    p
+      = markdown(post.body)
+    p
+      = post.created_at.strftime("%d-%m-%Y")
+    hr

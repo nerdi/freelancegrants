@@ -51,6 +51,9 @@ gem 'elasticsearch-rails'
 # add serachkick for additional search functionality with ease
 gem 'searchkick'
 
+#add slim templates for simplified erb and html
+gem "slim-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
