@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214030330) do
+ActiveRecord::Schema.define(version: 20160224210901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,29 @@ ActiveRecord::Schema.define(version: 20160214030330) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "email_signups", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "interested_in"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "footers", force: :cascade do |t|
+    t.string   "footer_title1"
+    t.string   "footer_body1"
+    t.string   "footer_image1_id"
+    t.string   "footer_title2"
+    t.string   "footer_body2"
+    t.string   "footer_image2_id"
+    t.string   "footer_title3"
+    t.string   "footer_body3"
+    t.string   "footer_image3_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
@@ -81,5 +104,27 @@ ActiveRecord::Schema.define(version: 20160214030330) do
 
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "welcomes", force: :cascade do |t|
+    t.string   "aboutus_title"
+    t.string   "aboutus_body"
+    t.string   "aboutus_image"
+    t.string   "hero_title"
+    t.string   "hero_body"
+    t.string   "hero_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

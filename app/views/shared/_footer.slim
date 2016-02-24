@@ -1,14 +1,17 @@
 .row
   .container
     .col-sm-4.footer-column
-      img.img-circle.footer-images[src="https://scontent-lax3-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/10660365_10152400315681608_7014035543486940290_n.jpg?oh=bc183df1a9ade9abf26c301d98b715d4&oe=5724D276" alt="..."]
+      = image_tag attachment_url(@footer_components, :footer_image1, :fill, 250, 250), :class=>"img img-circle footer-images"
       p.topDown
-        |  The Team 
+        h4 = @footer_components.footer_title1
+        p = @footer_components.footer_body1
     .col-sm-4.footer-column
-      img.img-circle.footer-images[src="http://img-aws.ehowcdn.com/200x200/cme/cme_public_images/www_ehow_com/i.ehow.com/images/a06/ju/f6/print-like-old-typewriter-800x800.jpg" alt="..."]
+      = image_tag attachment_url(@footer_components, :footer_image2, :fill, 250, 250), :class=>"img img-circle footer-images"
       p.topDown
-        |  Get In Touch 
+        h4 = @footer_components.footer_title2
+        p = @footer_components.footer_body2
     .col-sm-4.footer-column
-      img.img-circle.footer-images[src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTNnVm1CSuIPw0dRo7LJR99zVA5fA3wvkVa9oaxY_pG-nl3VOva" alt="..."]
+      = image_tag attachment_url(@footer_components, :footer_image3, :fill, 250, 250), :class=>"img img-circle footer-images"
       p.topDown
-        |  Our Focus 
+        h4 = @footer_components.footer_title3
+        p = @footer_components.footer_body3
