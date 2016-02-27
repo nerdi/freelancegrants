@@ -7,12 +7,15 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+    button.navbar-toggler.hidden-sm-up[type="button" data-toggle="collapse" data-target="#nav-content"]
+      |  ☰ 
+    #nav-content.collapse.navbar-toggleable-xs
     nav.navbar.navbar-fixed-top.navbar-light.bg-faded
       a.navbar-brand[href="#"]
         =image_tag("FreelanceGrantsSwirlLogoNavSmall.png", alt: "Freelance Grants Logo")
       ul.nav.navbar-nav
         li.nav-item
-          = link_to "Home", root_path, :class => ["nav-link", active_class(root_path)]
+          = link_to "Freelance Grants", root_path, :class => ["nav-link", active_class(root_path)]
         li.nav-item
           = link_to "Posts", posts_path, :class => ["nav-link", active_class(posts_path)]
         li.nav-item
@@ -28,8 +31,7 @@ html
         .alert.alert-success = flash[:notice]
       = render "shared/header"
       - if current_page?(root_url)
-        .container-fluid
-          = yield
+        = yield
       - else
         .container
           = yield

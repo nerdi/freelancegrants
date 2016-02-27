@@ -6,16 +6,29 @@ body{
   font-family: $font-family-base;
   font-stretch: condensed;
 }
-.bootstrap-welcome {
-  padding-top: 1em;
-  padding-bottom: 1em;
+.hero-background{
+  background-size: cover;
+}
+.bootstrap-hero {
+  padding-top: 12em;
+  padding-bottom: 2em;
   text-align: center;
+  .hero-title, .hero-body{
+    color:#fff;
+  }
+}
+.bootstrap-aboutus{
+  text-align: center;
+  padding-top:2em;
 }
 .topDown{
   margin-top: 10px;
 }
 .topDownWithNav{
   margin-top: 80px;
+}
+.hero-image img{
+  width:100%;
 }
 .footer-column{
   img{

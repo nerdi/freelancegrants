@@ -1,5 +1,5 @@
-.container
+.container-fluid.hero-background style="background-image:url(#{attachment_url(@welcome, :hero_image)})"
   .row
-    .col-sm-12.text-center.bootstrap-welcome    
-      h1 = @welcome.hero_title
-      h5 = @welcome.hero_body
+    .col-sm-4.text-center.bootstrap-hero
+      h1.hero-title = @welcome.hero_title
+      h5.hero-body = markdown(@welcome.hero_body)

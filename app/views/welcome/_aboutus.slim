@@ -1,5 +1,5 @@
 .container
   .row
-    .col-sm-12.text-center.bootstrap-welcome
+    .col-sm-12.text-center.bootstrap-aboutus
       h2 = @welcome.aboutus_title
-      p = @welcome.aboutus_body
+      p = markdown(@welcome.aboutus_body)
