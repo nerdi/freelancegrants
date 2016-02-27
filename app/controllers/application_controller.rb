@@ -9,5 +9,4 @@ class ApplicationController < ActionController::Base
   def load_footer_components
     @footer_components = Footer.last
   end
-
 end

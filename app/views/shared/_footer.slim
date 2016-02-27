@@ -4,14 +4,21 @@
       = image_tag attachment_url(@footer_components, :footer_image1, :fill, 250, 250), :class=>"img img-circle footer-images"
       p.topDown
         h4 = @footer_components.footer_title1
-        p = @footer_components.footer_body1
+        p = markdown(@footer_components.footer_body1)
     .col-sm-4.footer-column
       = image_tag attachment_url(@footer_components, :footer_image2, :fill, 250, 250), :class=>"img img-circle footer-images"
       p.topDown
         h4 = @footer_components.footer_title2
-        p = @footer_components.footer_body2
+        p = markdown(@footer_components.footer_body2)
+      = form_for :contacts, url:{:controller=>'contacts', method: 'put', :action=>'create', :remote => true} do |f|
+        .form-group = f.text_field :first_name, :placeholder => "First Name", :class =>'form-control'
+        .form-group = f.text_field :last_name, :placeholder => "Last Name", :class =>'form-control'
+        .form-group = f.text_field :email, :placeholder => "Email", :class =>'form-control'
+        .form-group = f.text_area :message, :placeholder => "Message", :class =>'form-control', :rows => 5
+        .poo-bear =f.text_field :poo_bear, :placeholder => "If you are Poo Bear you love eating out of these and you should leave it alone so you don't get stung by bees. If you are the Terminator then fill this out for sure!"
+        = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
     .col-sm-4.footer-column
       = image_tag attachment_url(@footer_components, :footer_image3, :fill, 250, 250), :class=>"img img-circle footer-images"
       p.topDown
         h4 = @footer_components.footer_title3
-        p = @footer_components.footer_body3
+        p = markdown(@footer_components.footer_body3)
