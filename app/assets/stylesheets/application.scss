@@ -6,16 +6,25 @@ body{
   font-family: $font-family-base;
   font-stretch: condensed;
 }
-.hero-background{
+.one-page-background{
   background-size: cover;
 }
 .bootstrap-hero {
   padding-top: 12em;
-  padding-bottom: 2em;
+  padding-bottom: 6em;
+  padding-left: 5%;
   text-align: center;
   .hero-title, .hero-body{
     color:#fff;
   }
+}
+.bootstrap-bodycontent {
+  padding-top: 5em;
+  padding-bottom: 5em;
+  color:#000;
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: #fff;
 }
 .bootstrap-aboutus{
   text-align: center;
@@ -26,9 +35,6 @@ body{
 }
 .topDownWithNav{
   margin-top: 80px;
-}
-.hero-image img{
-  width:100%;
 }
 .footer-column{
   img{
