@@ -1,0 +1,7 @@
+.container-fluid.one-page-background.bodycontent-image#pricing style="background-image:url(#{attachment_url(@welcome, :aboutus_image)})"
+  .row
+    .col-sm-4.text-center.bootstrap-aboutus.pull-xs-right
+      h2.bodycontent-title = @welcome.aboutus_title
+      h5.aboutus-body 
+        - if @welcome.aboutus_body
+          = markdown(@welcome.aboutus_body)

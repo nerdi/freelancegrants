@@ -1,6 +1,6 @@
-.container-fluid.one-page-background.bodycontent-image style="background-image:url(#{attachment_url(@welcome, :aboutus_image)})"
+.container-fluid.one-page-background.bodycontent-image#aboutus style="background-image:url(#{attachment_url(@welcome, :aboutus_image)})"
   .row
-    .col-sm-8.text-center.bootstrap-aboutus.pull-xs-right
+    .col-sm-4.text-center.bootstrap-aboutus.pull-xs-right
       h2.bodycontent-title = @welcome.aboutus_title
       h5.aboutus-body 
         - if @welcome.aboutus_body

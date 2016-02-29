@@ -15,12 +15,15 @@ html
         =image_tag("FreelanceGrantsSwirlLogoNavSmall.png", alt: "Freelance Grants Logo")
       ul.nav.navbar-nav
         li.nav-item
-          = link_to "Freelance Grants", root_path, :class => ["nav-link", active_class(root_path)]
+          = link_to "Freelance Grants .", root_path, :class => ["nav-link", active_class(root_path)]
         li.nav-item
-          = link_to "Posts", posts_path, :class => ["nav-link", active_class(posts_path)]
+          = link_to "Posts .", posts_path, :class => ["nav-link", active_class(posts_path)]
         li.nav-item
-          a.nav-link[href="#"]
-            | About
+          a.nav-link[href="#aboutus"]
+            | About Us .
+        li.nav-item
+          a.nav-link[href="#pricing"]
+            | Pricing .
       = form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f|
         = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control'
         = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
