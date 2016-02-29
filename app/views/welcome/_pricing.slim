@@ -1,7 +1,7 @@
-.container-fluid.one-page-background.bodycontent-image#pricing style="background-image:url(#{attachment_url(@welcome, :aboutus_image)})"
+.container-fluid.one-page-background.bodycontent-pricing#pricing style="background-image:url(#{attachment_url(@welcome, :pricing_image)})"
   .row
-    .col-sm-4.text-center.bootstrap-aboutus.pull-xs-right
-      h2.bodycontent-title = @welcome.aboutus_title
-      h5.aboutus-body 
-        - if @welcome.aboutus_body
-          = markdown(@welcome.aboutus_body)
+    .col-sm-6.text-center.bootstrap-aboutus
+      h2.pricing-title = @welcome.pricing_title
+      h5.pricing-body 
+        - if @welcome.pricing_body
+          = markdown(@welcome.pricing_body)
