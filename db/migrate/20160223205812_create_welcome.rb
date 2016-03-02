@@ -1,4 +1,4 @@
-class Welcome < ActiveRecord::Migration
+class CreateWelcome < ActiveRecord::Migration
   def change
     create_table :welcomes do |t|
       t.string :aboutus_title
