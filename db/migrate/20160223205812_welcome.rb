@@ -1,4 +1,4 @@
-class Welcome < ActiveRecord::Migration
+class CreateWelcome < ActiveRecord::Migration
   def change
     create_table :welcomes do |t|
       t.string :aboutus_title
@@ -7,7 +7,7 @@ class Welcome < ActiveRecord::Migration
       t.string :hero_title
       t.string :hero_body
       t.string :hero_image
- 
+
       t.timestamps
     end
   end
