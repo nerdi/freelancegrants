@@ -1,4 +1,4 @@
-class Footer < ActiveRecord::Migration
+class CreateFooter < ActiveRecord::Migration
   def change
     create_table :footers do |t|
       t.string :footer_title1
