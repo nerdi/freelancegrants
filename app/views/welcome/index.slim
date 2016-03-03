@@ -1,1 +1,5 @@
 = render "onepage"
+- @page.each do |page|
+  - if page.featured == true
+    = page.title
+    = page.body

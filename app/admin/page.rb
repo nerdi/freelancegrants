@@ -12,6 +12,6 @@ ActiveAdmin.register Page do
 #   permitted << :other if resource.something?
 #   permitted
 # end
-permit_params :title, :body
+permit_params :title, :body, :featured
 
 end

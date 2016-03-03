@@ -4,5 +4,6 @@ class WelcomeController < ApplicationController
     if params[:q].present?
       redirect_to :controller=>'searches', :action => 'search', :params => params
     end
+    @page = Page.all
   end
 end
