@@ -7,4 +7,15 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :body
   attachment :profile_image
   attachment :image
+  def search_data
+    as_json only: [:name, :body]
+    {
+      title: title,
+      body: body
+    }
+  end
+  def should_index? #should only index the following
+    title
+    body
+  end
 end
