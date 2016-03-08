@@ -1,5 +1,14 @@
 = render "onepage"
+
 - @page.each do |page|
   - if page.featured == true
-    = page.title
-    = page.body
+  	.row
+	  	.container-fluid style="background-image:url(#{attachment_url(page, :page_image)})"
+		  	- if page.align_right == true
+		  		.col-sm-6.text-center.pull-xs-right.page-content
+					= markdown(page.title)
+					= markdown(page.body)
+			-else
+				.col-sm-6.text-center.page-content
+					= markdown(page.title)
+					= markdown(page.body)

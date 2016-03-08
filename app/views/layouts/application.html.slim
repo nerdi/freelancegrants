@@ -18,12 +18,18 @@ html
           = link_to "Freelance Grants .", root_path, :class => ["nav-link", active_class(root_path)]
         li.nav-item
           = link_to "Posts .", posts_path, :class => ["nav-link", active_class(posts_path)]
-        li.nav-item
-          a.nav-link[href="#aboutus"]
-            | About Us .
-        li.nav-item
-          a.nav-link[href="#pricing"]
-            | Pricing .
+        -if current_page?(root_url)      
+          li.nav-item
+            a.nav-link[href="#aboutus"]
+              | About Us .
+          li.nav-item
+            a.nav-link[href="#pricing"]
+              | Pricing .
+        -else
+          li.nav-item
+            = link_to "About Us .", root_path(:anchor => "aboutus"), :class => ["nav-link", active_class(root_path)]
+          li.nav-item
+            = link_to "Pricing .", root_path(:anchor => "pricing"), :class => ["nav-link", active_class(root_path)]
       = form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f|
         = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control'
         = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
