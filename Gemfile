@@ -54,6 +54,9 @@ gem 'searchkick'
 #add slim templates for simplified erb and html
 gem "slim-rails"
 
+#add MailChimp Functionality
+gem "gibbon"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
