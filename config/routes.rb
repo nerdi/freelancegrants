@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :pages
   resources :contacts
+  resources :users
   
   get 'search', to: 'searches#search'
   # Example resource route with options:
