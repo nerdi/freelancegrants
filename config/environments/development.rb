@@ -37,7 +37,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   #loads local_env env variables
-  ENV = YAML::load_file("#{Rails.root}/config/local_env.yml")[Rails.env]
+  API_KEYS = YAML::load_file("#{Rails.root}/config/local_env.yml")[Rails.env]
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 
   # Raises error for missing translations
