@@ -1,6 +1,4 @@
-class User < ActiveRecord::Base
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+class Subscriber < ActiveRecord::Base
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :email, presence: true
