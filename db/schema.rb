@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316210628) do
+ActiveRecord::Schema.define(version: 20160319023554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 20160316210628) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "category_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -81,6 +87,13 @@ ActiveRecord::Schema.define(version: 20160316210628) do
     t.string   "footer_image3_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "subscriber_id"
+    t.integer  "category_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -121,34 +134,29 @@ ActiveRecord::Schema.define(version: 20160316210628) do
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "interest"
-    t.string "poo_bear"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "email"
+    t.string   "poo_bear"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "encrypted_password"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "superadmin",             default: false, null: false
-    t.string   "first_name"
-    t.string   "last_name"
+    t.boolean  "superadmin"
     t.string   "poo_bear"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",  null: false

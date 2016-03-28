@@ -16,3 +16,4 @@
 //= require refile
 //= require redactor-rails
 //= require_tree .
+//= require bootstrap

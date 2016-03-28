@@ -1,11 +1,11 @@
 .container.jumbotron.newsletter
-	h3.col-sm-12 Signup for our newsletter
+	h3.col-sm-12 Signup for our newsletter 
 	.col-sm-12
 	= form_for :subscribers, url:{:controller=>'subscribers', method: 'put', :action=>'create', :remote => true} do |f|
 	        .form-group.col-sm-6 = f.text_field :first_name, :placeholder => "First Name", :class =>'form-control'
 	        .form-group.col-sm-6 = f.text_field :last_name, :placeholder => "Last Name", :class =>'form-control'
-	        .form-group.col-sm-6 = f.text_field :email, :placeholder => "Email", :class =>'form-control'
-	        .form-group.col-sm-6 = f.text_field :interest, :placeholder => "Intrest", :class =>'form-control'    
+	        .form-group.col-sm-6 = f.text_field :email, :placeholder => "Email", :class =>'form-control dropdown'
+	       	.form-group.col-sm-6.select-dropdown = f.collection_select :category_ids, Category.all, :id, :category_name, {}, :class =>'dropdown-menu btn-group', :prompt => "I'm interested in..."
 	        .poo-bear =f.text_field :poo_bear, :placeholder => "If you are Poo Bear you love eating out of these and you should leave it alone so you don't get stung by bees. If you are the Terminator then fill this out for sure!"
 	        .col-sm-6
 	        	= submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
