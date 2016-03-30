@@ -35,7 +35,7 @@ html
         = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
     div[style="margin-top: 60px;"]
       - if flash[:alert]
-        .alert.alert-danger = flash[:alert]
+          .alert.alert-danger = flash[:alert].join(", ")
       - if flash[:notice]
         .alert.alert-success = flash[:notice]
       = render "shared/header"

@@ -32,7 +32,7 @@ class SubscribersController < ApplicationController
         format.html { redirect_to :back, notice: 'Subscriber was successfully created.' }
         format.json { render :show, status: :created, location: @subscriber }
       else
-        format.html { redirect_to :back }
+        format.html { redirect_to :back, alert: @subscriber.errors.full_messages }
         format.json { render json: @subscriber.errors, status: :unprocessable_entity }
       end
     end
