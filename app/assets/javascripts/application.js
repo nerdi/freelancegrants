@@ -17,3 +17,4 @@
 //= require redactor-rails
 //= require_tree .
 //= require bootstrap
+//= require activeadmin_polymorphic

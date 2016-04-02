@@ -39,6 +39,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    activeadmin_polymorphic (0.3.4)
+      spinjs-rails (~> 1.4)
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
@@ -279,6 +281,8 @@ GEM
       activesupport (>= 3.1, < 5.0)
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
+    spinjs-rails (1.4)
+      rails (>= 3.1)
     spring (1.6.3)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -314,6 +318,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  activeadmin_polymorphic
   better_errors
   bootstrap (~> 4.0.0.alpha3)
   byebug

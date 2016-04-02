@@ -30,6 +30,8 @@ end
 #activeadmin requirements
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
+#allow dynamic sections to be addded
+gem "activeadmin_polymorphic"
 #allows for markdown in activeadmin
 gem 'redcarpet'
 #allows for file uploads
