@@ -31,9 +31,9 @@ html
           li.nav-item
             = link_to "Pricing .", root_path(:anchor => "pricing"), :class => ["nav-link", active_class(root_path)]
       = form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f|
-        = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control'
+        = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control searchBox'
         = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
-    div[style="margin-top: 60px;"]
+    div.mainContent
       - if flash[:alert]
           .alert.alert-danger = flash[:alert].join(", ")
       - if flash[:notice]
