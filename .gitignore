@@ -19,3 +19,4 @@
 
 #ignore assets from redactor
 /public/system/redactor_assets/pictures
+.env
