@@ -1,6 +1,7 @@
 class Subscriber < ActiveRecord::Base
 	has_many :interests
   has_many :categories, through: :interests
+  belongs_to :user
   accepts_nested_attributes_for :categories
 
   validates :last_name, presence: true

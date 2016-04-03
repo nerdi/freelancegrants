@@ -25,10 +25,19 @@ class SubscribersController < ApplicationController
   # POST /subscriber
   # POST /subscriber.json
   def create
-    @subscriber = Subscriber.new(subscriber_params)
+    users = User.all
+    users.each do |user|
+      @user_id = user.id
+      @user_email = user.email
+    end
 
+    @subscriber = Subscriber.new(subscriber_params)
     respond_to do |format|
       if @subscriber.save
+        if @subscriber.email == @user_email
+          @subscriber.user_id = @user_id
+          @subscriber.save
+        end
         format.html { redirect_to :back, notice: 'Subscriber was successfully created.' }
         format.json { render :show, status: :created, location: @subscriber }
       else
