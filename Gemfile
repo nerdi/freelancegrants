@@ -57,6 +57,9 @@ gem "slim-rails"
 #add MailChimp Functionality
 gem "gibbon"
 
+# Run background tasks
+gem "sidekiq"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

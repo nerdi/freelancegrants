@@ -17,9 +17,9 @@ class Subscriber < ActiveRecord::Base
   private
  
     def subscribe_user_to_mailing_list
-      SubscribeUserToMailingListJob.perform_later(self)
+      SubscribeUserToMailingListJob.set(wait: 1.minute).perform_later(self)
     end
     def send_welcome_email_to_user
-      UserMailer.welcome_email(self).deliver_later
+      UserMailer.welcome_email(self).deliver_later!(wait: 2.minutes)
     end
 end
