@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   resources :subscribers
   
   get 'search', to: 'searches#search'
+
+  # Sidekiq Dashboard
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   # Example resource route with options:
   #   resources :products do
   #     member do

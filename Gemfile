@@ -50,6 +50,7 @@ gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 # add serachkick for additional search functionality with ease
 gem 'searchkick'
+gem 'redis'
 
 #add slim templates for simplified erb and html
 gem "slim-rails"

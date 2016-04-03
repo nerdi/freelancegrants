@@ -342,6 +342,7 @@ DEPENDENCIES
   rails_12factor
   redactor-rails
   redcarpet
+  redis
   refile
   refile-mini_magick
   refile-s3
