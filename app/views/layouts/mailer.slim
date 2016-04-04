@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    = @subscriber.first_name
-    
-    p It's my pleasure to welcome you to Freelance Grants! <a href="http://freelancegrants.com.au/">Explore our disruptive grant application process</a>!
-  
-  
-    p Cheers,<br/>
-    p Andy Solo
-    
-  </body>
-</html>
+doctype html
+html
+  head
+    meta[content="text/html; charset=UTF-8" http-equiv="Content-Type"]
+  body
+    h3 
+    	|Hi 
+    	= "#{@subscriber.first_name} #{@subscriber.last_name}"
+    p
+      |  It's my pleasure to welcome you to Freelance Grants! 
+      a[href="http://freelancegrants.com.au/"]
+        | Explore our disruptive grant application process
+      | ! 
+    p
+      |  Cheers, 
+    p
+      | Andy Solo

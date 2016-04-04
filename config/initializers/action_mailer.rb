@@ -17,7 +17,7 @@ Rails.application.configure do
 	    :user_name => API_KEYS["SPARKPOST_USERNAME"],
 	    :password  => API_KEYS["SPARKPOST_API_KEY"],
 	    :authentication => 'login',
-	    :domain => 'freelancegrants.com.au'
+	    :domain => 'solocreative.com.au'
 	  }
   end
 end

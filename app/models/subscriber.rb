@@ -20,6 +20,10 @@ class Subscriber < ActiveRecord::Base
       SubscribeUserToMailingListJob.set(wait: 1.minute).perform_later(self)
     end
     def send_welcome_email_to_user
-      UserMailer.welcome_email(self).deliver_later!(wait: 2.minutes)
+      if Rails.env.production?
+        UserMailer.welcome_email(self).deliver_later!(wait: 2.minutes)
+      else
+        UserMailer.welcome_email(self).deliver_now
+      end
     end
 end
