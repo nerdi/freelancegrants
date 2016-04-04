@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-	default from: "dan@solocreative.com.au" #change this to freelance grants in prod
+	default from: "dan@freelancegrants.com.au" #change this to freelance grants in prod
  
   def welcome_email(subscriber)
     @subscriber = subscriber
