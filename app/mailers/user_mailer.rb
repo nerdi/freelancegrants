@@ -1,5 +1,9 @@
 class UserMailer < ApplicationMailer
-	default from: "dan@freelancegrants.com.au" #change this to freelance grants in prod
+	if Rails.env.production?
+		default from: "dan@freelancegrants.com.au"
+	else
+		default from: "dan@solocreative.com.au" #change this to freelance grants in prod
+	end
  
   def welcome_email(subscriber)
     @subscriber = subscriber
