@@ -6,9 +6,14 @@
       | Your search returned no results... Try Again!
     = render "shared/search_form"
 - else
-  h3.topDownWithNav
+
+  - @post.sections.order("position asc").each do |section|
+    = markdown(section.title)
+    = markdown(section.body)
+
+  /h3.topDownWithNav
     = @post.title
-  = markdown(@post.body)
-  = image_tag attachment_url(@post, :profile_image, :fill, 250, 250)
-  = image_tag attachment_url(@post, :image, :fill, 250, 250)
-  = @post.created_at.strftime("%d-%m-%Y")
+  /= markdown(@post.body)
+  /= image_tag attachment_url(@post, :profile_image, :fill, 250, 250)
+  /= image_tag attachment_url(@post, :image, :fill, 250, 250)
+  /= @post.created_at.strftime("%d-%m-%Y")
