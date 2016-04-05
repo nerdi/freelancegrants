@@ -1,7 +1,7 @@
 ActiveAdmin.register Post do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :body, :profile_image, :image
+  permit_params :title, :body, :profile_image, :image, :sections_attributes => [:body, :title, :profile_image, :image]
 
   show do
     attributes_table do
@@ -17,10 +17,14 @@ ActiveAdmin.register Post do
 
   form do |f|
     inputs 'Details' do
-      input :title
-      input :body, :input_html => {:class => "redactor"}
-      input :profile_image, :required => false, :as => :file, destroy: false, :direct => true
-      input :image, :required => false, :as => :file, destroy: false, :direct => true
+      f.inputs do
+        f.has_many :sections do |s|
+          s.input :title, :input_html => {:class => "redactor"}
+          s.input :body, :input_html => {:class => "redactor"}
+          #s.input :profile_image, :required => false, :as => :file, destroy: false, :direct => true
+          #s.input :image, :required => false, :as => :file, destroy: false, :direct => true
+        end
+      end
       actions
     end
   end

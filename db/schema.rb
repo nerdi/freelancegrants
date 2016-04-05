@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402231311) do
+ActiveRecord::Schema.define(version: 20160405092651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,9 +139,14 @@ ActiveRecord::Schema.define(version: 20160402231311) do
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
   create_table "sections", force: :cascade do |t|
+    t.text     "title"
+    t.text     "body"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "sections", ["post_id"], name: "index_sections_on_post_id", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "last_name"
@@ -204,4 +209,5 @@ ActiveRecord::Schema.define(version: 20160402231311) do
     t.string   "pricing_image_id"
   end
 
+  add_foreign_key "sections", "posts"
 end

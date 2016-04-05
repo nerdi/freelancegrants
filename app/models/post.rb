@@ -1,5 +1,7 @@
 require 'elasticsearch/model'
 class Post < ActiveRecord::Base
+  has_many :sections
+  accepts_nested_attributes_for :sections
   searchkick suggest: [:title]
   #add attachement declaration to moidels for refile image uploading
   include Elasticsearch::Model

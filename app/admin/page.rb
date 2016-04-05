@@ -15,7 +15,7 @@ ActiveAdmin.register Page do
 	permit_params :title, :body, :featured, :weight, :align_right, :page_image
 	form do |f|
 	    inputs 'Details' do
-			input :title, :input_html => {:class => "redactor"}, :as => :text
+					input :title, :input_html => {:class => "redactor"}, :as => :text
 	      	input :body, :input_html => {:class => "redactor"}, :as => :text
 	      	input :featured, :as => :radio
 	      	input :weight
