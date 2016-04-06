@@ -1,9 +1,10 @@
 ul
   - @post.each do |post|
-    h3
-      = link_to markdown(post.title), post_path(post.id)
+    h3 = link_to post.title, post_path(post.id)
     p
-      = markdown(post.body)
-    p
-      = post.created_at.strftime("%d-%m-%Y")
+    - post.sections.order("position asc").each do |section|
+    	h4 = markdown(section.title)
+    	= markdown(section.body)
+    	hr
+    = post.created_at.strftime("%d-%m-%Y")
     hr

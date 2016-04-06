@@ -20,7 +20,7 @@ ActiveAdmin.register Welcome do
       row :hero_title
       row (:hero_body) { markdown(welcome.hero_body) }
       row ("Hero Image")  {
-        image_tag(attachment_url(welcome, :hero_image))
+        image_tag(attachment_url(welcome, :hero_image, :fill, 300, 300, format: "jpg"))
       }
       #bodycontent content
       row :bodycontent_title
