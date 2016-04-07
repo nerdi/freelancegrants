@@ -41,7 +41,7 @@ html
       = render "shared/header"
       - if current_page?(root_url)
         = yield
-      - else
-        .container
+      -else
+        .container-fluid
           = yield
       = render "shared/footer"

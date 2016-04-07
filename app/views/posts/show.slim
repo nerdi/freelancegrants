@@ -6,11 +6,28 @@
       | Your search returned no results... Try Again!
     = render "shared/search_form"
 - else
-
+  
   - @post.sections.order("position asc").each do |section|
-    = markdown(section.title)
-    = markdown(section.body)
-
+    - if section.image_orientation == "right"
+      .col-sm-12.post-img
+        .col-sm-6.text-center.pull-xs-left.add-top-padding
+          h3 = markdown(section.title)
+          = markdown(section.body)
+        .col-sm-6.pull-xs-right.post-img
+          = image_tag(attachment_url(section, :image))
+    -elsif section.image_orientation == "left"
+      .col-sm-12.post-img.add-top-padding
+        .col-sm-6.pull-xs-left.post-img
+          = image_tag(attachment_url(section, :image))
+        .col-sm-6.text-center.pull-xs-right.add-top-padding
+          h3 = markdown(section.title)
+          = markdown(section.body)
+    -else section.image_orientation == "left"
+      .col-sm-12.pull-xs-left.post-img.add-top-padding
+        = image_tag(attachment_url(section, :image))
+      .col-sm-12.text-center.pull-xs-right
+        h3 = markdown(section.title)
+        = markdown(section.body)
   /h3.topDownWithNav
     = @post.title
   /= markdown(@post.body)

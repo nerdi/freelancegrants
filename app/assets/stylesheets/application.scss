@@ -6,6 +6,10 @@ body{
   font-family: $font-family-base;
   font-stretch: condensed;
 }
+.container-fluid{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .mainContent{
   margin-top:55px;
 }
@@ -41,6 +45,16 @@ body{
   padding-left: 5%;
   padding-right: 5%;
   background-color: #fff;
+}
+.post-img{
+  padding-left:0px;
+  padding-right:0px;
+  img{
+    width:100%;
+  }
+}
+.add-top-padding{
+  padding-top: 10px;
 }
 .topDown{
   margin-top: 10px;

@@ -1,7 +1,7 @@
 ActiveAdmin.register Post do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :body, :profile_image, :image, :sections_attributes => [:_destroy, :id,:body, :title, :profile_image, :image, :position]
+  permit_params :title, :body, :profile_image, :image, :sections_attributes => [:_destroy, :id,:body, :title, :profile_image, :image, :position, :image_orientation]
 
   show do
       post.sections.order("position asc").each do |section|
@@ -20,6 +20,7 @@ ActiveAdmin.register Post do
         s.input :title, :input_html => {:class => "redactor"}, :as => :text
         s.input :body, :input_html => {:class => "redactor"}, :as => :text
         s.input :image, :required => false, :as => :file, :direct => true
+        s.input :image_orientation, :as => :select, :collection => [['Left',"left"], ['Right',"right"], ['Full Screen',"full"]]
         #s.input :profile_image, :required => false, :as => :file, destroy: false, :direct => true
         #s.input :image, :required => false, :as => :file, destroy: false, :direct => true
       end
