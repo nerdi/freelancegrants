@@ -1,10 +1,10 @@
-ActiveAdmin.register Post do
-  # See permitted parameters documentation:
+ActiveAdmin.register Profile do
+	# See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :body, :profile_image, :image, :sections_attributes => [:_destroy, :id, :body, :title, :profile_image, :image, :position, :image_orientation]
+  permit_params :title, :sections_attributes => [:_destroy, :id, :body, :title, :image, :position, :image_orientation]
 
   show do
-      post.sections.order("position asc").each do |section|
+      profile.sections.order("position asc").each do |section|
         h2  markdown(section.title)
         h3  markdown(section.body)
         div image_tag(attachment_url(section, :image))

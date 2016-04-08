@@ -1,6 +1,6 @@
 require 'elasticsearch/model'
 class Post < ActiveRecord::Base
-  has_many :sections, dependent: :destroy
+  has_many :sections, as: :sectionable, dependent: :destroy
   accepts_nested_attributes_for :sections, allow_destroy: true
   searchkick suggest: [:title]
   #add attachement declaration to moidels for refile image uploading

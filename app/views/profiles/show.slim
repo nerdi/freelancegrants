@@ -1,31 +1,31 @@
 - if params[:q].present?
-  - if !@postsearch.empty?
+  - if !@profilesearch.empty?
     = render "shared/search_results"
   - else
     h3.topDownWithNav
       | Your search returned no results... Try Again!
     = render "shared/search_form"
 - else
-  h2 = @post.title 
-  - @post.sections.order("position asc").each do |section|
+  h2 = @profile.title 
+  - @profile.sections.order("position asc").each do |section|
     - if section.image_orientation == "right"
-      .col-sm-12.post-img
+      .col-sm-12.profile-img
         .col-sm-6.text-center.pull-xs-left
           h3.add-top-padding = markdown(section.title)
           = markdown(section.body)
-        .col-sm-6.pull-xs-right.post-img
+        .col-sm-6.pull-xs-right.profile-img
           = image_tag(attachment_url(section, :image))
     -elsif section.image_orientation == "left"
-      .col-sm-12.post-img
-        .col-sm-6.pull-xs-left.post-img
+      .col-sm-12.profile-img
+        .col-sm-6.pull-xs-left.profile-img
           = image_tag(attachment_url(section, :image))
-        .col-sm-6.text-center.pull-xs-right
+        .col-sm-6.text-center.pull-xs-right.add-top-padding
           h3.add-top-padding = markdown(section.title)
           = markdown(section.body)
     -else section.image_orientation == "left"
       .col-sm-12.text-center.pull-xs-right
         h3.add-top-padding = markdown(section.title)
         = markdown(section.body)
-      .col-sm-12.pull-xs-left.post-img
+      .col-sm-12.pull-xs-left.profile-img
         = image_tag(attachment_url(section, :image))
-  = @post.created_at.strftime("%d-%m-%Y")
+  = @profile.created_at.strftime("%d-%m-%Y")

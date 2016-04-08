@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :posts
+  resources :profiles
   resources :pages
   resources :contacts
   resources :users

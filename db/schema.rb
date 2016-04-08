@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406211522) do
+ActiveRecord::Schema.define(version: 20160407223251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,13 @@ ActiveRecord::Schema.define(version: 20160406211522) do
     t.string   "image_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "profile_image_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -147,9 +154,12 @@ ActiveRecord::Schema.define(version: 20160406211522) do
     t.integer  "position"
     t.string   "image_id"
     t.string   "image_orientation"
+    t.integer  "sectionable_id"
+    t.string   "sectionable_type"
   end
 
   add_index "sections", ["post_id"], name: "index_sections_on_post_id", using: :btree
+  add_index "sections", ["sectionable_type", "sectionable_id"], name: "index_sections_on_sectionable_type_and_sectionable_id", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
     t.string   "last_name"
