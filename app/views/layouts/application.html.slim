@@ -30,12 +30,20 @@ html
             = link_to "About Us .", root_path(:anchor => "aboutus"), :class => ["nav-link", active_class(root_path)]
           li.nav-item
             = link_to "Pricing .", root_path(:anchor => "pricing"), :class => ["nav-link", active_class(root_path)]
+        - if current_user
+          li.nav-item
+            = link_to('Logout .', destroy_user_session_path, :method => :delete, :class => ["nav-link"])
+          li.nav-item
+            = link_to(current_user.email, "www.dog.com", :class => ["nav-link"])
+        - else
+          li.nav-item
+            = link_to('Login .', new_user_session_path, :class => ["nav-link"])
       = form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f|
         = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control searchBox'
         = submit_tag "Go", name: nil, :class => 'btn btn-success-outline'
     div.mainContent
       - if flash[:alert]
-          .alert.alert-danger = flash[:alert].join(", ")
+          .alert.alert-danger = flash[:alert]
       - if flash[:notice]
         .alert.alert-success = flash[:notice]
       = render "shared/header"

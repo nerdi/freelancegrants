@@ -75,4 +75,8 @@ class PostsController < ApplicationController
   def find_post
     @post = Post.find(params[:id])
   end
+
+  def console
+
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407223251) do
+ActiveRecord::Schema.define(version: 20160409043550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,7 +127,20 @@ ActiveRecord::Schema.define(version: 20160407223251) do
     t.string   "profile_image_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "user_id"
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "purchases", ["profile_id"], name: "index_purchases_on_profile_id", using: :btree
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
   create_table "redactor_assets", force: :cascade do |t|
     t.string   "data_file_name",               null: false
@@ -148,7 +161,6 @@ ActiveRecord::Schema.define(version: 20160407223251) do
   create_table "sections", force: :cascade do |t|
     t.text     "title"
     t.text     "body"
-    t.integer  "post_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "position"
@@ -158,7 +170,6 @@ ActiveRecord::Schema.define(version: 20160407223251) do
     t.string   "sectionable_type"
   end
 
-  add_index "sections", ["post_id"], name: "index_sections_on_post_id", using: :btree
   add_index "sections", ["sectionable_type", "sectionable_id"], name: "index_sections_on_sectionable_type_and_sectionable_id", using: :btree
 
   create_table "subscribers", force: :cascade do |t|
@@ -192,6 +203,15 @@ ActiveRecord::Schema.define(version: 20160407223251) do
     t.inet     "last_sign_in_ip"
     t.boolean  "superadmin"
     t.string   "poo_bear"
+    t.string   "reset_password_token"
+    t.string   "password_salt"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "authentication_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "versions", force: :cascade do |t|
@@ -222,5 +242,7 @@ ActiveRecord::Schema.define(version: 20160407223251) do
     t.string   "pricing_image_id"
   end
 
-  add_foreign_key "sections", "posts"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "purchases", "profiles"
+  add_foreign_key "purchases", "users"
 end

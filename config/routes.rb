@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => { registrations: 'registrations' }
   mount RedactorRails::Engine => '/redactor_rails'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -17,12 +18,14 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :posts
   resources :profiles
+  resources :purchases
   resources :pages
   resources :contacts
   resources :users
   resources :subscribers
   
   get 'search', to: 'searches#search'
+  get 'console', to: 'posts#console'
 
   # Sidekiq Dashboard
   require 'sidekiq/web'

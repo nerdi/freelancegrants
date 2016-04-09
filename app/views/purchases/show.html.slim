@@ -1,0 +1,12 @@
+p#notice = notice
+tr
+        td Id: 
+        td = @purchase.id
+        td User
+        td = @purchase.user_id
+        td Profile
+        td = @purchase.profile_id
+
+= link_to 'Edit', edit_purchase_path(@purchase)
+'|
+= link_to 'Back', purchases_path
