@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+  before_action :show_authorize, except: [:index]
   before_filter :find_profile, :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -75,4 +76,14 @@ class ProfilesController < ApplicationController
   def find_profile
     @profile = Profile.find(params[:id])
   end
+
+  def show_authorize
+    profile_object = Profile.find(params[:id])
+    purchase = Purchase.where(profile_id:profile_object.id, user_id:current_user)
+    puts purchase.length
+    if purchase.length < 1
+      redirect_to profiles_path, {alert: "Please purchase this profile to view it."}
+    end
+  end
+
 end

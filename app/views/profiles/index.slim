@@ -1,0 +1,12 @@
+.container
+	h1
+	  | Profiles
+	- if params[:q].present?
+	  - if !@profilesearch.empty?
+	    = render "shared/search_results"
+	  - else
+	    h3.topDown
+	      | Your search returned no results... Try Again!
+	    = render "shared/search_form"
+	- else
+	  = render "profiles"
