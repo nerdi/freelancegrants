@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'purchase_items/create'
+
+  get 'purchase_items/update'
+
+  get 'purchase_items/destroy'
+
+  get 'carts/show'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   mount RedactorRails::Engine => '/redactor_rails'
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -19,6 +27,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :profiles
   resources :purchases
+  resource :cart, only: [:show]
+  resources :purchase_items, only: [:create, :update, :destroy]
   resources :pages
   resources :contacts
   resources :users
@@ -30,6 +40,8 @@ Rails.application.routes.draw do
   # Sidekiq Dashboard
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+
+
 
   # Example resource route with options:
   #   resources :products do

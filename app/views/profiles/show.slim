@@ -6,7 +6,8 @@
       | Your search returned no results... Try Again!
     = render "shared/search_form"
 - else
-  h2 = @profile.title 
+  h2 = @profile.title
+  h4 = convert_aud(@profile.price)
   - @profile.sections.order("position asc").each do |section|
     - if section.image_orientation == "right"
       .col-sm-12.profile-img

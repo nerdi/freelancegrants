@@ -1,0 +1,18 @@
+- if !@purchase_item.nil? && @purchase_item.errors.any?
+  .alert.alert-danger
+    ul
+      - @purchase_item.errors.full_messages.each do |msg|
+        li
+          = msg
+- if @purchase_items.size == 0
+  p.text-center
+    |  There are no items in your shopping cart. Please 
+    = link_to "go back", profiles_path
+    |  and add some items to your cart. 
+- else
+  - @purchase_items.each do |purchase_item|
+    = render 'carts/cart_row', profile: purchase_item.profile, purchase_item: purchase_item, show_total: true
+  h2 Grand Total 
+  h3 = number_to_currency current_purchase.subtotal
+  = form_tag purchases_path do
+  script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="#{Rails.configuration.stripe[:publishable_key]}" data-amount="2500"

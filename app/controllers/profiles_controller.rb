@@ -4,7 +4,8 @@ class ProfilesController < ApplicationController
   before_filter :find_profile, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @profile = Profile.all
+    @profiles = Profile.all
+    @purchase_item = current_purchase.purchase_items.new
     if params[:q].present?
       @profilesearch = Profile.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     end
@@ -15,9 +16,13 @@ class ProfilesController < ApplicationController
       @profilesearch = Profile.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     else
       @profile = Profile.find(params[:id])
-      respond_to do |format|
-        format.html # show.slim
-        format.xml  { render :xml => @profile }
+      if @profile.published
+        respond_to do |format|
+          format.html # show.slim
+          format.xml  { render :xml => @profile }
+        end
+      else
+        redirect_to profiles_path, notice: 'This is not the Profile you are looking for'
       end
     end
   end

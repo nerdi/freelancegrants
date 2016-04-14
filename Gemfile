@@ -48,7 +48,7 @@ gem 'redactor-rails'
 # elasticsearch
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
-# add serachkick for additional search functionality with ease
+# add saerchkick for additional search functionality with ease
 gem 'searchkick'
 gem 'redis'
 
@@ -71,6 +71,8 @@ gem "sidekiq"
 # gem 'capistrano-rails', group: :development
 gem "better_errors"
 gem 'puma'
+gem 'stripe'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

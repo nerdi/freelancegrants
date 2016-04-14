@@ -32,7 +32,9 @@ html
             = link_to "About Us .", root_path(:anchor => "aboutus"), :class => ["nav-link", active_class(root_path)]
           li.nav-item
             = link_to "Pricing", root_path(:anchor => "pricing"), :class => ["nav-link", active_class(root_path)]
-        .pull-xs-right 
+        li.nav-item
+          .cart-text = render 'layouts/cart_text'
+        .pull-xs-right
           - if current_user
             li.nav-item
               = link_to("Hi #{current_user.first_name} #{current_user.last_name} .", user_path(current_user), :class => ["nav-link"])

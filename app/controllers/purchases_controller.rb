@@ -23,18 +23,39 @@ class PurchasesController < ApplicationController
 
   # POST /purchases
   # POST /purchases.json
-  def create
-    @purchase = Purchase.new(purchase_params)
 
+  def create
+    #Amount in cents
+    @amount = 2500
+
+    customer = Stripe::Customer.create(
+      :email => current_user.email,
+      :card => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer => customer.id,
+      :amount => @amount,
+      :description => "Add Profile Title Here",
+      :currency => 'aud'
+    )
+    stripe_token = params[:stripeToken]
+    stripe_email = params[:stripeEoken]
+    @purchase = Purchase.new(user_id:current_user.id, profile_id:2)
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+        format.html { redirect_to @purchase, notice: 'Thanks for buying Profile... XXXX ' }
         format.json { render :show, status: :created, location: @purchase }
       else
         format.html { render :new }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
       end
     end
+    
+    
+  rescue Stripe::CardError => e
+    flash[:alert] = e.message
+    redirect_to profiles_path
   end
 
   # PATCH/PUT /purchases/1

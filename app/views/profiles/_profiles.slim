@@ -1,9 +1,15 @@
 - @profile.each do |profile|
-  h3 = link_to profile.title, profile_path(profile.id)
-  p
-  - profile.sections.order("position asc").each do |section|
-  	h4 = markdown(section.title)
-  	= markdown(section.body)
-  	hr
-  = profile.created_at.strftime("%d-%m-%Y")
-  hr
+	- if profile.published == true
+	  - if profile.purchases.where(user_id:current_user, profile_id:profile.id).first
+	  	h3 = link_to profile.title, profile_path(profile.id)
+	  	h4 = convert_aud(profile.price)
+	  	p
+	  	- profile.sections.order("position asc").each do |section|
+	  		h4 = markdown(section.title)
+	  		= markdown(section.body)
+	  		hr
+	  	.btn.btn-success-outline =link_to profile.title, profile_path(profile.id)
+
+	  - else
+		  h3 = link_to profile.title, profile_path(profile.id)
+		  .btn.btn-success-outline Add To Cart

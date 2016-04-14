@@ -1,0 +1,16 @@
+.well
+  .row
+    .col-xs-8
+      h4
+        = profile.title
+    .col-xs-4
+      = form_for purchase_item, remote: true do |f|
+        h4.col-xs-8
+          | Price: 
+          span[style="color: green"]
+            = number_to_currency purchase_item.unit_price
+          = f.hidden_field :quantity, value: purchase_item.quantity.to_i, min: 1
+          = f.hidden_field :profile_id, value: profile.id
+        .col-xs-4
+          .btn-group.pull-xs-right
+            = link_to "Delete", purchase_item, { data: { confirm: "Are you sure you wish to delete the profile '#{purchase_item.profile.title}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger" }

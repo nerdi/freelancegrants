@@ -1,9 +1,14 @@
 ActiveAdmin.register Profile do
 	# See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :sections_attributes => [:_destroy, :id, :body, :title, :image, :position, :image_orientation]
+  permit_params :title, :price, :published, :sections_attributes => [:_destroy, :id, :body, :title, :image, :position, :image_orientation]
 
   show do
+      if profile.published
+        h3 'This profile is published'
+      else
+        h3 'This profile is hidden'
+      end
       profile.sections.order("position asc").each do |section|
         h2  markdown(section.title)
         h3  markdown(section.body)
@@ -16,6 +21,8 @@ ActiveAdmin.register Profile do
   form do |f|
     inputs 'Details' do
       input :title
+      input :price
+      input :published
       f.has_many :sections, sortable: :position, allow_destroy: true do |s|
         s.input :title, :input_html => {:class => "redactor"}, :as => :text
         s.input :body, :input_html => {:class => "redactor"}, :as => :text

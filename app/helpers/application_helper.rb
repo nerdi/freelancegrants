@@ -25,4 +25,8 @@ module ApplicationHelper
     current_page?(link_path) ? 'active' : ""
   end
 
+  def convert_aud(price)
+    number_to_currency(price, :unit => "AUD$")
+  end
+
 end
