@@ -20,4 +20,5 @@ class Purchase < ActiveRecord::Base
     self[:subtotal] = subtotal
   end
 
+
 end

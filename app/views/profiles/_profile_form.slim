@@ -1,0 +1,20 @@
+= form_for purchase_item, remote: true do |f|
+  h4.text-right
+    | Price: 
+    span[style="color: green"]
+      = number_to_currency profile.price
+  .input-group
+    = f.hidden_field :quantity, value: 1, min: 1
+  = f.hidden_field :profile_id, value: profile.id
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :unit_price, value: profile.price
+  - if current_user.present?
+    .input-group
+      = f.submit "Add to Cart", class: "btn btn-success-outline"
+  - else
+    p 
+      | Please
+      = link_to " Sign up ", new_user_registration_path
+      | or 
+      = link_to('Login', new_user_session_path, :class => ["nav-link"])
+      |  to purchase a profile

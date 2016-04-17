@@ -3,6 +3,8 @@ class PurchaseItemsController < ApplicationController
     @purchase = current_purchase
     @purchase_item = @purchase.purchase_items.new(purchase_item_params)
     @purchase.save
+    puts @purchase_item.profile_id
+    puts @purchase.id
     session[:purchase_id] = @purchase.id
   end
 
@@ -23,6 +25,6 @@ class PurchaseItemsController < ApplicationController
 	private
   
   def purchase_item_params
-    params.require(:purchase_item).permit(:quantity, :profile_id)
+    params.require(:purchase_item).permit(:quantity, :profile_id, :user_id, :unit_price)
   end
 end

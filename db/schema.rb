@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413214430) do
+ActiveRecord::Schema.define(version: 20160417010355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 20160413214430) do
     t.decimal  "total_price", precision: 12, scale: 3
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+    t.integer  "user_id"
   end
 
   add_index "purchase_items", ["profile_id"], name: "index_purchase_items_on_profile_id", using: :btree
@@ -155,7 +156,6 @@ ActiveRecord::Schema.define(version: 20160413214430) do
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "profile_id"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.decimal  "subtotal",           precision: 12, scale: 3
@@ -163,9 +163,9 @@ ActiveRecord::Schema.define(version: 20160413214430) do
     t.decimal  "shipping",           precision: 12, scale: 3
     t.decimal  "total",              precision: 12, scale: 3
     t.integer  "purchase_status_id"
+    t.integer  "profile_id"
   end
 
-  add_index "purchases", ["profile_id"], name: "index_purchases_on_profile_id", using: :btree
   add_index "purchases", ["purchase_status_id"], name: "index_purchases_on_purchase_status_id", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
@@ -272,7 +272,6 @@ ActiveRecord::Schema.define(version: 20160413214430) do
   add_foreign_key "profiles", "users"
   add_foreign_key "purchase_items", "profiles"
   add_foreign_key "purchase_items", "purchases"
-  add_foreign_key "purchases", "profiles"
   add_foreign_key "purchases", "purchase_statuses"
   add_foreign_key "purchases", "users"
 end

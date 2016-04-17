@@ -25,8 +25,9 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
 
   def create
-    #Amount in cents
-    @amount = 2500
+
+
+    @amount = 1000
 
     customer = Stripe::Customer.create(
       :email => current_user.email,
@@ -40,11 +41,11 @@ class PurchasesController < ApplicationController
       :currency => 'aud'
     )
     stripe_token = params[:stripeToken]
-    stripe_email = params[:stripeEoken]
-    @purchase = Purchase.new(user_id:current_user.id, profile_id:2)
+    stripe_email = params[:stripeEmail]
+    @purchase = Purchase.new(user_id:current_user.id, profile_id: 3, purchase_status_id:2)
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Thanks for buying Profile... XXXX ' }
+        format.html { redirect_to profiles_path, notice: 'Thanks for buying the Profile' }
         format.json { render :show, status: :created, location: @purchase }
       else
         format.html { render :new }
@@ -61,15 +62,38 @@ class PurchasesController < ApplicationController
   # PATCH/PUT /purchases/1
   # PATCH/PUT /purchases/1.json
   def update
+    @amount = 1000
+
+    customer = Stripe::Customer.create(
+      :email => current_user.email,
+      :card => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer => customer.id,
+      :amount => @amount,
+      :description => "Add Profile Title Here",
+      :currency => 'aud'
+    )
+    stripe_token = params[:stripeToken]
+    stripe_email = params[:stripeEmail]
+
+    @purchase = Purchase.find(current_purchase.id)
+    @purchase.update!(user_id:current_user.id, purchase_status_id:2)
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+        format.html { redirect_to profiles_path, notice: 'Profile was successfully purchased.' }
         format.json { render :show, status: :ok, location: @purchase }
       else
         format.html { render :edit }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
       end
     end
+    
+    
+    rescue Stripe::CardError => e
+    flash[:alert] = e.message
+    redirect_to profiles_path
   end
 
   # DELETE /purchases/1

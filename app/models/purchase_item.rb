@@ -1,7 +1,6 @@
 class PurchaseItem < ActiveRecord::Base
   belongs_to :profile
   belongs_to :purchase
-
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validate :profile_present
   validate :purchase_present

@@ -9,9 +9,21 @@
 	      | Your search returned no results... Try Again!
 	    = render "shared/search_form"
 	- else
-	  h3.text-center
-	    | Profiles
-	  .row
-	    .col-xs-6
-	      - @profiles.each do |profile|
-	        = render "profile_row", profile: profile, purchase_item: @purchase_item
+		- my_items = Array.new
+		-	@profiles.each do |profile|
+			- my_items << profile.id
+		- @all_purchase_items.each do |item|
+			- if item.user_id == current_user.id && item.purchase.purchase_status_id == 2
+				- profile = Profile.find_by_id(item.profile_id)
+				- my_items.delete_if{|i|i==profile.id}
+				h2 = profile.title
+				br
+				= link_to "View Profile", profile_path(profile.id), class: "btn btn-success-outline"
+				p
+		- my_items.each do |profile_id|
+			if 
+			- profile = Profile.find_by_id(profile_id)
+			h2 = profile.title
+			= convert_aud(profile.price)
+			= render "profile_form", profile: profile, purchase_item: @purchase_item
+				

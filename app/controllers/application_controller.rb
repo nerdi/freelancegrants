@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_purchase
 
   def current_purchase
-    if !session[:purchase_id].nil?
+    sesh = session[:purchase_id]
+    purch = Purchase.find_by_id(sesh)
+    if !session[:purchase_id].nil? && purch.purchase_status_id != 2
       Purchase.find(session[:purchase_id])
     else
       Purchase.new

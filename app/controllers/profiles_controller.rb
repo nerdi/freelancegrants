@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = Profile.all
+    @purchases = Purchase.all
+    @all_purchase_items = PurchaseItem.all
     @purchase_item = current_purchase.purchase_items.new
     if params[:q].present?
       @profilesearch = Profile.search params[:q], fields: [:title, :body], operator: "or", suggest: true
@@ -16,6 +18,7 @@ class ProfilesController < ApplicationController
       @profilesearch = Profile.search params[:q], fields: [:title, :body], operator: "or", suggest: true
     else
       @profile = Profile.find(params[:id])
+      @current_user = current_user
       if @profile.published
         respond_to do |format|
           format.html # show.slim
@@ -84,9 +87,8 @@ class ProfilesController < ApplicationController
 
   def show_authorize
     profile_object = Profile.find(params[:id])
-    purchase = Purchase.where(profile_id:profile_object.id, user_id:current_user)
-    puts purchase.length
-    if purchase.length < 1
+    purchase_item = PurchaseItem.where(profile_id:profile_object.id, user_id:current_user)
+    if !purchase_item.present? || purchase_item.first.purchase.purchase_status_id != 2
       redirect_to profiles_path, {alert: "Please purchase this profile to view it."}
     end
   end

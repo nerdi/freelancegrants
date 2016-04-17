@@ -11,8 +11,10 @@
     |  and add some items to your cart. 
 - else
   - @purchase_items.each do |purchase_item|
-    = render 'carts/cart_row', profile: purchase_item.profile, purchase_item: purchase_item, show_total: true
+    .add-top-padding-large
+      = render 'carts/cart_row', profile: purchase_item.profile, purchase_item: purchase_item, show_total: true
   h2 Grand Total 
   h3 = number_to_currency current_purchase.subtotal
-  = form_tag purchases_path do
-  script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="#{Rails.configuration.stripe[:publishable_key]}" data-amount="2500"
+  h3 = current_purchase.id
+  = form_tag Purchase.find_by_id(current_purchase.id), :method => :put do
+    script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key="#{Rails.configuration.stripe[:publishable_key]}" data-amount=current_purchase.subtotal*100

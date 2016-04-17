@@ -14,35 +14,38 @@ html
       a.navbar-brand[href="#"]
         =image_tag("FreelanceGrantsSwirlLogoNavSmall.png", alt: "Freelance Grants Logo")
       ul.nav.navbar-nav
-        li.nav-item
-          = link_to "Freelance Grants .", root_path, :class => ["nav-link", active_class(root_path)]
-        li.nav-item
-          = link_to "Posts .", posts_path, :class => ["nav-link", active_class(posts_path)]
-        li.nav-item
-          = link_to "Profiles .", profiles_path, :class => ["nav-link", active_class(profiles_path)]
-        -if current_page?(root_url)      
+        .col-xs-6
           li.nav-item
-            a.nav-link[href="#aboutus"]
-              | About Us .
+            = link_to "Freelance Grants .", root_path, :class => ["nav-link", active_class(root_path)]
           li.nav-item
-            a.nav-link[href="#pricing"]
-              | Pricing
-        -else
+            = link_to "Posts .", posts_path, :class => ["nav-link", active_class(posts_path)]
           li.nav-item
-            = link_to "About Us .", root_path(:anchor => "aboutus"), :class => ["nav-link", active_class(root_path)]
-          li.nav-item
-            = link_to "Pricing", root_path(:anchor => "pricing"), :class => ["nav-link", active_class(root_path)]
-        li.nav-item
-          .cart-text = render 'layouts/cart_text'
-        .pull-xs-right
-          - if current_user
+            = link_to "Profiles .", profiles_path, :class => ["nav-link", active_class(profiles_path)]
+          -if current_page?(root_url)      
             li.nav-item
-              = link_to("Hi #{current_user.first_name} #{current_user.last_name} .", user_path(current_user), :class => ["nav-link"])
+              a.nav-link[href="#aboutus"]
+                | About Us .
             li.nav-item
+              a.nav-link[href="#pricing"]
+                | Pricing
+          -else
+            li.nav-item
+              = link_to "About Us .", root_path(:anchor => "aboutus"), :class => ["nav-link", active_class(root_path)]
+            li.nav-item
+              = link_to "Pricing", root_path(:anchor => "pricing"), :class => ["nav-link", active_class(root_path)]
+        .pull-xs-right.col-xs-4
+          - if current_user.present?
+            li.nav-item.pull-xs-right
               = link_to('Logout', destroy_user_session_path, :method => :delete, :class => ["nav-link"])
+            li.nav-item.pull-xs-right
+              .cart-text = render 'layouts/cart_text'
+            li.nav-item.pull-xs-right 
+              = link_to("Hi #{current_user.first_name} #{current_user.last_name} .", user_path(current_user), :class => ["nav-link"])
           - else
-            li.nav-item
-              = link_to('Login', new_user_session_path, :class => ["nav-link"])
+            li.nav-item.pull-xs-right
+              = link_to(" . Sign up", new_user_registration_path, :class => ["nav-link"])
+            li.nav-item.pull-xs-right
+              = link_to("Login ", new_user_session_path, :class => ["nav-link"])
     .fixed-search.add-top-padding.col-sm-12.pull-xs-right
       = form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f|
         = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control searchBox'
