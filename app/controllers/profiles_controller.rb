@@ -92,5 +92,4 @@ class ProfilesController < ApplicationController
       redirect_to profiles_path, {alert: "Please purchase this profile to view it."}
     end
   end
-
 end

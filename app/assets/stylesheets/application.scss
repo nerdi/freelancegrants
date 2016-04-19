@@ -65,11 +65,17 @@ body{
 .add-bottom-padding{
   padding-bottom: 10px;
 }
+.no-left-pad{
+  padding-left:0px;
+}
 .topDown{
   margin-top: 10px;
 }
 .topDownWithNav{
   margin-top: 80px;
+}
+.fill-image img{
+  width:100%;
 }
 .newsletter{
   padding: 2rem;

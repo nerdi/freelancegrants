@@ -1,6 +1,6 @@
 .container
 	h1
-	  | Profiles
+	  | Charity Profiles
 	- if params[:q].present?
 	  - if !@profilesearch.empty?
 	    = render "shared/search_results"
@@ -9,21 +9,28 @@
 	      | Your search returned no results... Try Again!
 	    = render "shared/search_form"
 	- else
-		- my_items = Array.new
+		- my_items = Array.new #create array to track for purchased items
 		-	@profiles.each do |profile|
-			- my_items << profile.id
+			- my_items << profile.id #add all profile ids from each item to array
 		- @all_purchase_items.each do |item|
-			- if item.user_id == current_user.id && item.purchase.purchase_status_id == 2
-				- profile = Profile.find_by_id(item.profile_id)
-				- my_items.delete_if{|i|i==profile.id}
+			- if current_user.present?
+				- if item.user_id == current_user.id && item.purchase.purchase_status_id == 2
+					- profile = Profile.find_by_id(item.profile_id)
+					- my_items.delete_if{|i|i==profile.id} #remove profile ids that have been purchased from id array
+					h2 = profile.title
+					.col-sm-4.no-left-pad.fill-image = image_tag(attachment_url(profile, :profile_image))
+					.col-sm-8 = markdown(profile.short_description)
+					= link_to "View Profile", profile_path(profile.id), class: "btn btn-success-outline"
+					hr
+		- my_items.each do |profile_id| #iterate through profile id array to show unpurchased profiles
+			- if Profile.find_by_id(profile_id).present?
+				- profile = Profile.find_by_id(profile_id)
 				h2 = profile.title
-				br
-				= link_to "View Profile", profile_path(profile.id), class: "btn btn-success-outline"
-				p
-		- my_items.each do |profile_id|
-			if 
-			- profile = Profile.find_by_id(profile_id)
-			h2 = profile.title
-			= convert_aud(profile.price)
-			= render "profile_form", profile: profile, purchase_item: @purchase_item
+				.col-sm-4.no-left-pad.fill-image = image_tag(attachment_url(profile, :profile_image))
+				.col-sm-8 = markdown(profile.short_description)
+				- if !current_user.present?
+					p "Log in to purchase"
+				- else
+					= render "profile_form", profile: profile, purchase_item: @purchase_item
+				hr
 				
