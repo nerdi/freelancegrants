@@ -6,6 +6,16 @@ body{
   font-family: $font-family-base;
   font-stretch: condensed;
 }
+.modal{
+  width:60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 60px;
+  .jumbotron{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
 .container-fluid{
   padding-left: 0px;
   padding-right: 0px;
