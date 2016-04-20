@@ -14,6 +14,9 @@ class ApplicationController < ActionController::Base
       Purchase.new
     end
   end
+  def after_sign_in_path_for(resource)
+    request.referrer
+  end
 
   private
 

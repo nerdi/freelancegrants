@@ -16,6 +16,9 @@ body{
     padding-bottom: 10px;
   }
 }
+a:focus {
+  outline:0;
+}
 .container-fluid{
   padding-left: 0px;
   padding-right: 0px;
@@ -74,6 +77,9 @@ body{
 }
 .add-bottom-padding{
   padding-bottom: 10px;
+}
+.add-left-padding{
+  padding-left:10px;
 }
 .no-left-pad{
   padding-left:0px;

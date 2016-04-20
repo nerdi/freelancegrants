@@ -29,8 +29,17 @@
 				.col-sm-4.no-left-pad.fill-image = image_tag(attachment_url(profile, :profile_image))
 				.col-sm-8 = markdown(profile.short_description)
 				- if !current_user.present?
-					p "Log in to purchase"
+					h4.text-right
+					  | Price: 
+					  span[style="color: green"]
+					    = number_to_currency profile.price
+
+					= link_to("Login ", "#login", "data-toggle" => "modal", :class => ['nav-link'])
+					span
+						|  or 
+					span = link_to("Sign Up", "#sign_up", "data-toggle" => "modal", :class => ['nav-link'])
+					span
+						|  to view profile
 				- else
 					= render "profile_form", profile: profile, purchase_item: @purchase_item
 				hr
-				

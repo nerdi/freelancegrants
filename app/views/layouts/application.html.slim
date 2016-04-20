@@ -42,12 +42,12 @@ html
             li.nav-item.pull-xs-right
               .cart-text = render 'layouts/cart_text'
             li.nav-item.pull-xs-right 
-              = link_to("Hi #{current_user.first_name} #{current_user.last_name} .", user_path(current_user), :class => ["nav-link"])
+              = link_to("Hi #{truncate(current_user.first_name, length: 8, omission: "")}", user_path(current_user), :class => ["nav-link"])
           - else
+            li.nav-item.pull-xs-right.add-left-padding
+              = link_to("Sign Up", "#sign_up", "data-toggle" => "modal", :class => ['nav-link'])
             li.nav-item.pull-xs-right
-              = link_to(" . Sign Up", "#sign_up", "data-toggle" => "modal", :class => ['nav-link'])
-            li.nav-item.pull-xs-right
-              = link_to("Login ", "#login", "data-toggle" => "modal", :class => ['nav-link'])
+              = link_to("Login .", "#login", "data-toggle" => "modal", :class => ['nav-link'])
     .fixed-search.add-top-padding.col-sm-12.pull-xs-right
       = form_for(search_path, method: :get, :html => { :class =>'form-inline pull-xs-right' }) do |f|
         = text_field_tag :q, params[:q], :placeholder => "Search", :class =>'form-control searchBox'
