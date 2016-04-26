@@ -1,0 +1,11 @@
+one:
+  last_name: "Solo"
+  first_name: "Dan"
+  email: "dan@solocreative.com.au"
+  poo_bear: MyString
+
+two:
+  last_name: "Solo2"
+  first_name: "Dan2"
+  email: "dan+2@solocreative.com.au"
+  poo_bear: MyString

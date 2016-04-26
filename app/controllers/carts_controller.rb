@@ -8,6 +8,5 @@ class CartsController < ApplicationController
 	end
 
   def create
-    
   end
 end

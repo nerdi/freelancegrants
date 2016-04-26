@@ -78,6 +78,13 @@ group :development, :test do
   gem 'byebug'
   gem 'figaro'
   gem "letter_opener"
+  gem "minitest-reporters"
+  gem "guard"
+  gem "guard-minitest"
+  gem "minitest-colorize", git: "https://github.com/ysbaddaden/minitest-colorize"
+  gem "terminal-notifier-guard"
+  gem "terminal-notifier"
+
 end
 
 group :development do

@@ -1,7 +1,7 @@
 - @profile.each do |profile|
 	- if profile.published == true
   	h3 = link_to profile.title, profile_path(profile.id)
-  	h4 = convert_aud(profile.price)
+  	h4 = number_to_currency profile.price
   	p
   	- profile.sections.order("position asc").each do |section|
   		h4 = markdown(section.title)

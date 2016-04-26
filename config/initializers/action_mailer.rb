@@ -9,7 +9,7 @@ Rails.application.configure do
 	    :authentication => 'login',
 	    :domain => 'freelancegrants.com.au'
 	  }
-  else
+  elsif Rails.env.development?
   	config.action_mailer.smtp_settings = {
 	    :address   => "smtp.sparkpostmail.com",
 	    :port      => 587,
