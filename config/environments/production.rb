@@ -80,4 +80,7 @@ Rails.application.configure do
   #searchbox implementation for elasticsearch on heroku
 
   Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
+
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
+  config.action_controller.asset_host = 'https://d156ylhbj9t3yp.cloudfront.net/'
 end
